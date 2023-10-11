@@ -1,13 +1,22 @@
 #include <unistd.h>
+#include "function_pointers.h"
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * array_iterator - prints each array elem on a new line
+ * @array: array
+ * @size: how many elem to print
+ * @action: pointer to print in regular or hex
+ * Return void
  */
-int _putchar(char c)
+
+void array_iterator(int *array, size_t size, void (*action)(int))
 {
-	return (write(1, &c, 1));
+	unsigned int i;
+
+	if (array == NULL || action == NULL)
+		return;
+	for (i = 0; i < size; i++)
+	{
+		action(array[i]);
+	}
 }
